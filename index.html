@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A todo web app built as a resolution for a Frontend Mentor's challenge, featuring dark and light modes, persistent user configuration even after the page is closed or reloaded and created todos being saved on user browser's storage, allowing keeping track of the todos you have created."
+    />
+    <meta property="ogg:title" content="Frontend Mentor's Todo App Challenge" />
+    <title>Todo App</title>
+    <link rel="icon" href="./assets/images/favicon.png" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <script defer src="./src/scripts/main.js"></script>
+  </head>
+  <body>
+    <img
+      src="./assets/images/bg-desktop-light.jpg"
+      alt="decoration image"
+      aria-hidden="true"
+      class="decoration"
+    />
+    <article class="todo-container">
+      <header class="header">
+        <h1 class="title">TODO</h1>
+        <button class="toggle-theme-btn" aria-label="Toggle application theme">
+          <img
+            src="./assets/images/icon-moon.svg"
+            alt="theme icon"
+            aria-hidden="true"
+          />
+        </button>
+      </header>
+      <article class="todo">
+        <header class="todo__header">
+          <input
+            type="text"
+            minlength="1"
+            maxlength="30"
+            aria-required="true"
+            placeholder="Create a new todo..."
+            class="input"
+          />
+          <button type="button" class="btn btn--create-todo">
+            Create todo
+          </button>
+        </header>
+        <div class="todo-panel-container">
+          <ul role="tabpanel" id="panel-all" class="todo__list todo__list--all">
+            <!--Hide this list item below when inserting new todos-->
+            <li class="todo__item todo__item--no-todos-available">
+              No todos available
+            </li>
+            <!-- Todo Item Model: how it should be dinamically created -->
+            <!-- <li class="todo__item">
+              <div
+                role="checkbox"
+                aria-checked="false"
+                class="custom-checkbox"
+                tabindex="1"
+                id="todo-index-in-the-todos-array"
+                aria-label="Toggle the completeness of this todo"
+              ></div>
+              <label>Lorem</label>
+            </li> -->
+          </ul>
+          <ul
+            role="tabpanel"
+            id="panel-active"
+            class="todo__list todo__list--active"
+            hidden
+          ></ul>
+          <ul
+            role="tabpanel"
+            id="panel-completed"
+            class="todo__list todo__list--completed"
+            hidden
+          ></ul>
+          <div class="tabpanel__controls">
+            <span class="items-left">x items left</span>
+            <div role="tablist" class="tabpanel__tablist">
+              <button
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="panel-all"
+                class="tablist__tab tablist__tab--all tablist__tab--selected"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-active"
+                class="tablist__tab tablist__tab--active"
+              >
+                Active
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-completed"
+                class="tablist__tab tablist__tab--completed"
+              >
+                Completed
+              </button>
+            </div>
+            <button type="button" class="clear-completed-btn">
+              Clear Completed
+            </button>
+          </div>
+        </div>
+      </article>
+    </article>
+  </body>
+</html>
