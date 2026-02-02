@@ -20,6 +20,73 @@ createTodoBtn.addEventListener("click", () => {
 });
 
 // Functions
+/**
+ *
+ * @param {string} title
+ */
+function createTodo(title) {
+  if (typeof title !== "string") {
+    throw new TypeError("Expect a string for title property");
+  }
+
+  if (!title.trim()) {
+    throw new Error("Expect a non-empty string for title property");
+  }
+
+  const todos = getTodos();
+
+  const checkIfTodoAlreadyExists = todos.some((t) => {
+    return t.title.toLowerCase() === title.trim().toLowerCase();
+  });
+
+  if (checkIfTodoAlreadyExists) {
+    throw new Error("Todo with the same title already exists");
+  }
+
+  todos.push({
+    title: title.trim(),
+    isCompleted: false,
+  });
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+/**
+ * Get an array of objects representing each one of them
+ * a todo, having a title and isCompleted fields, if some
+ * todo exists, or an empty array if no todo was previously
+ * saved.
+ * @returns {{title: string; isCompleted: boolean}[] | []}
+ */
+function getTodos() {
+  try {
+    const todos = JSON.parse(localStorage.getItem("todos"));
+
+    const isValidTodosArray = () => {
+      const conditions = [
+        Array.isArray(todos),
+        todos.every((t) => {
+          return (
+            typeof t.title === "string" &&
+            typeof t.isCompleted === "boolean" &&
+            typeof t === "object"
+          );
+        }),
+      ];
+
+      return conditions.every((c) => c);
+    };
+
+    if (isValidTodosArray()) {
+      return todos;
+    } else {
+      return [];
+    }
+  } catch {
+    return [];
+  }
+}
+
 function isInputValueValid() {
   const value = input.value;
   return value.trim() !== "";
