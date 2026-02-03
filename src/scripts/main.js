@@ -176,3 +176,21 @@ function renderTodos() {
   fillTabPanelWithTodos(todoListActiveEl, activeTodos);
   fillTabPanelWithTodos(todoListCompletedEl, completedTodos);
 }
+
+function toggleTodoCompleteness(todoIndex) {
+  if (typeof todoIndex !== "number") {
+    throw new TypeError("Expect a number");
+  }
+
+  const todos = getTodos();
+
+  if (todoIndex < 0 || todoIndex >= todos.length) {
+    throw new RangeError("Expect a valid index value");
+  }
+
+  todos[todoIndex].isCompleted = !todos[todoIndex].isCompleted;
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  renderTodos();
+}
