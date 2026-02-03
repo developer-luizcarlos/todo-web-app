@@ -74,11 +74,6 @@ function createTodoItemElement(title, isCompleted) {
 
   todoItemEl.className = "todo__item";
 
-  if (isCompleted) {
-    customCheckbox.classList.add("custom-checkbox--checked");
-    customCheckbox.innerHTML = "&check;";
-  }
-
   customCheckbox.classList.add("custom-checkbox");
   customCheckbox.tabIndex = 1;
   customCheckbox.role = "checkbox";
@@ -89,6 +84,32 @@ function createTodoItemElement(title, isCompleted) {
 
   todoItemEl.insertAdjacentElement("beforeend", customCheckbox);
   todoItemEl.insertAdjacentElement("beforeend", label);
+
+  if (isCompleted) {
+    todoItemEl.classList.add("todo__item--completed");
+
+    customCheckbox.classList.add("custom-checkbox--checked");
+    customCheckbox.innerHTML = "&check;";
+  }
+
+  todoItemEl.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (target === customCheckbox || target === label) {
+      const innerTodoText = label.textContent.trim();
+      const todoItemWithSameTextAsInnerTodoIndex = getTodos().findIndex((t) => {
+        return t.title === innerTodoText;
+      });
+
+      if (todoItemWithSameTextAsInnerTodoIndex === -1) {
+        return;
+      }
+
+      toggleTodoCompleteness(todoItemWithSameTextAsInnerTodoIndex);
+
+      renderTodos();
+    }
+  });
 
   return todoItemEl;
 }
@@ -191,6 +212,4 @@ function toggleTodoCompleteness(todoIndex) {
   todos[todoIndex].isCompleted = !todos[todoIndex].isCompleted;
 
   localStorage.setItem("todos", JSON.stringify(todos));
-
-  renderTodos();
 }
