@@ -121,22 +121,52 @@ function createTodoItemElement(title, isCompleted) {
     const target = event.target;
 
     if (target === customCheckbox || target === label) {
-      const innerTodoText = label.textContent.trim();
-      const todoItemWithSameTextAsInnerTodoIndex = getTodos().findIndex((t) => {
-        return t.title === innerTodoText;
-      });
+      const todoText = label.textContent.trim();
+      const todoIndex = findTodoIndex(todoText);
 
-      if (todoItemWithSameTextAsInnerTodoIndex === -1) {
+      if (todoIndex === -1) {
         return;
       }
 
-      toggleTodoCompleteness(todoItemWithSameTextAsInnerTodoIndex);
+      toggleTodoCompleteness(todoIndex);
 
       renderTodos();
     }
   });
 
+  customCheckbox.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    const isTriggerKey = key === " " || key === "Enter";
+
+    if (!isTriggerKey) {
+      return;
+    }
+
+    customCheckbox.click();
+  });
+
   return todoItemEl;
+}
+
+function findTodoIndex(todoTitle) {
+  if (typeof todoTitle !== "string") {
+    throw new TypeError("Expect a string");
+  }
+
+  if (!todoTitle.trim()) {
+    throw new Error("Expect a non-empty string");
+  }
+
+  const todos = getTodos();
+
+  if (!todos.length) {
+    return -1;
+  }
+
+  return todos.findIndex((item) => {
+    return item.title === todoTitle;
+  });
 }
 
 /**
