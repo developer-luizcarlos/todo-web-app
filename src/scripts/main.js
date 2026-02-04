@@ -259,6 +259,8 @@ function renderTodos() {
     todoListCompletedEl.innerHTML =
       "<li class='todo__item todo__item--no-todos-available'>No todos available</li>";
 
+    itemsLeftEl.textContent = "0 items left";
+
     return;
   }
 
@@ -289,6 +291,8 @@ function renderTodos() {
   fillTabPanelWithTodos(todoListAllEl, todos);
   fillTabPanelWithTodos(todoListActiveEl, activeTodos);
   fillTabPanelWithTodos(todoListCompletedEl, completedTodos);
+
+  itemsLeftEl.textContent = `${activeTodos.length} items left`;
 }
 
 function toggleTodoCompleteness(todoIndex) {
