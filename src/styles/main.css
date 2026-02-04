@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url(./variables.css);
 
 *,
 *::before,
@@ -6,25 +7,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-:root {
-  --bg-body: hsl(0, 0%, 98%);
-  --bg-create-btn: hsl(249, 17%, 32%);
-  --bg-input: hsl(0, 0%, 98%);
-  --bg-tabpanel-controls: hsl(0, 0%, 98%);
-  --bg-todo-item-container: hsl(0, 0%, 98%);
-  --border-custom-checkbox: 1px solid hsl(234, 39%, 85%);
-  --border-bottom-todo-item-container: 1px solid hsl(233, 11%, 84%);
-  --color-clear-completed-btn: hsl(236, 9%, 61%);
-  --color-create-btn: hsl(0, 0%, 98%);
-  --color-items-left: hsl(236, 9%, 61%);
-  --color-tab: hsl(236, 9%, 61%);
-  --color-tab-selected: hsl(220, 98%, 61%);
-  --color-title: hsl(0, 0%, 98%);
-  --color-todo-item: hsl(235, 19%, 35%);
-  --color-todo-item-completed: hsl(233, 11%, 84%);
-  --shadow-panel-container: 0 0 10px 1px hsl(233, 11%, 84%);
 }
 
 body,
