@@ -12,6 +12,7 @@
   --bg-body: hsl(0, 0%, 98%);
   --bg-create-btn: hsl(249, 17%, 32%);
   --bg-input: hsl(0, 0%, 98%);
+  --bg-tabpanel-controls: hsl(0, 0%, 98%);
   --bg-todo-item-container: hsl(0, 0%, 98%);
   --border-custom-checkbox: 1px solid hsl(234, 39%, 85%);
   --border-bottom-todo-item-container: 1px solid hsl(233, 11%, 84%);
@@ -169,7 +170,7 @@ body {
 }
 
 .tabpanel__controls {
-  background-color: hsl(0, 0%, 98%);
+  background-color: var(--bg-tabpanel-controls);
   display: flex;
   align-items: center;
   justify-content: space-between;
