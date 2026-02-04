@@ -9,6 +9,7 @@ const noTodosAvailableLi = document.querySelector(
   ".todo__item--no-todos-available",
 );
 const itemsLeftEl = document.querySelector(".items-left");
+const tabs = document.querySelectorAll(".tablist__tab");
 const tabAllBtn = document.querySelector(".tablist__tab--all");
 const tabActiveBtn = document.querySelector(".tablist__tab--active");
 const tabCompletedBtn = document.querySelector(".tablist__tab--completed");
@@ -21,6 +22,30 @@ window.addEventListener("DOMContentLoaded", () => {
 
 createTodoBtn.addEventListener("click", () => {
   console.log(isInputValueValid());
+});
+
+tabs.forEach((element, _, arr) => {
+  element.addEventListener("click", () => {
+    arr.forEach((item) => {
+      item.setAttribute("aria-selected", "false");
+      item.classList.remove("tablist__tab--selected");
+    });
+
+    element.setAttribute("aria-selected", "true");
+    element.classList.add("tablist__tab--selected");
+
+    const tabPanels = document.querySelectorAll("*[role='tabpanel']");
+
+    const controledPanel = document.getElementById(
+      element.getAttribute("aria-controls"),
+    );
+
+    tabPanels.forEach((element) => {
+      element.hidden = true;
+    });
+
+    controledPanel.hidden = false;
+  });
 });
 
 // Functions
