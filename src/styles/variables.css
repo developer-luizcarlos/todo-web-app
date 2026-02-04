@@ -8,6 +8,7 @@
   --border-bottom-todo-item-container: 1px solid hsl(233, 11%, 84%);
   --color-clear-completed-btn: hsl(236, 9%, 61%);
   --color-create-btn: hsl(0, 0%, 98%);
+  --color-input: hsl(235, 19%, 35%);
   --color-items-left: hsl(236, 9%, 61%);
   --color-tab: hsl(236, 9%, 61%);
   --color-tab-selected: hsl(220, 98%, 61%);
@@ -15,4 +16,44 @@
   --color-todo-item: hsl(235, 19%, 35%);
   --color-todo-item-completed: hsl(233, 11%, 84%);
   --shadow-panel-container: 0 0 10px 1px hsl(233, 11%, 84%);
+}
+
+body#light-theme {
+  --bg-body: hsl(0, 0%, 98%);
+  --bg-create-btn: hsl(249, 17%, 32%);
+  --bg-input: hsl(0, 0%, 98%);
+  --bg-tabpanel-controls: hsl(0, 0%, 98%);
+  --bg-todo-item-container: hsl(0, 0%, 98%);
+  --border-custom-checkbox: 1px solid hsl(234, 39%, 85%);
+  --border-bottom-todo-item-container: 1px solid hsl(233, 11%, 84%);
+  --color-clear-completed-btn: hsl(236, 9%, 61%);
+  --color-create-btn: hsl(0, 0%, 98%);
+  --color-input: hsl(235, 19%, 35%);
+  --color-items-left: hsl(236, 9%, 61%);
+  --color-tab: hsl(236, 9%, 61%);
+  --color-tab-selected: hsl(220, 98%, 61%);
+  --color-title: hsl(0, 0%, 98%);
+  --color-todo-item: hsl(235, 19%, 35%);
+  --color-todo-item-completed: hsl(233, 11%, 84%);
+  --shadow-panel-container: 0 0 10px 1px hsl(233, 11%, 84%);
+}
+
+body#dark-theme {
+  --bg-body: hsl(235, 21%, 11%);
+  --bg-create-btn: hsl(173, 81%, 35%);
+  --bg-input: hsl(235, 24%, 19%);
+  --bg-tabpanel-controls: hsl(235, 24%, 19%);
+  --bg-todo-item-container: hsl(235, 24%, 19%);
+  --border-custom-checkbox: 1px solid hsl(233, 14%, 35%);
+  --border-bottom-todo-item-container: 1px solid hsl(237, 14%, 26%);
+  --color-clear-completed-btn: hsl(233, 14%, 35%);
+  --color-create-btn: hsl(235, 21%, 11%);
+  --color-input: hsl(234, 39%, 85%);
+  --color-items-left: hsl(233, 14%, 35%);
+  --color-tab: hsl(233, 14%, 35%);
+  --color-tab-selected: hsl(220, 98%, 61%);
+  --color-title: hsl(0, 0%, 98%);
+  --color-todo-item: hsl(234, 39%, 85%);
+  --color-todo-item-completed: hsl(235, 16%, 43%);
+  --shadow-panel-container: 0 0 10px 1px hsl(235, 24%, 19%);
 }
