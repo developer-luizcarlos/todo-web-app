@@ -138,7 +138,7 @@ function createTodoItemElement(title, isCompleted) {
   todoItemEl.className = "todo__item";
 
   customCheckbox.classList.add("custom-checkbox");
-  customCheckbox.tabIndex = 1;
+  customCheckbox.tabIndex = 0;
   customCheckbox.role = "checkbox";
   customCheckbox.ariaChecked = isCompleted;
   customCheckbox.ariaLabel = "Toggle the completeness of this todo";
