@@ -26,7 +26,28 @@ clearCompletedBtn.addEventListener("click", () => {
 });
 
 createTodoBtn.addEventListener("click", () => {
-  console.log(isInputValueValid());
+  if (!isInputValueValid()) {
+    return;
+  }
+
+  const todoTitle = input.value.trim();
+
+  createTodo(todoTitle);
+
+  renderTodos();
+
+  input.value = "";
+  input.focus();
+});
+
+input.addEventListener("keydown", (event) => {
+  const key = event.key;
+
+  if (key !== "Enter") {
+    return;
+  }
+
+  createTodoBtn.click();
 });
 
 tabs.forEach((element, _, arr) => {
