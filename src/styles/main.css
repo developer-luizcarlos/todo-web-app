@@ -140,6 +140,11 @@ body {
   width: 25px;
 }
 
+.custom-checkbox--checked {
+  background: linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  color: white;
+}
+
 .todo__item {
   border-bottom: var(--border-bottom-todo-item-container);
   background-color: var(--bg-todo-item-container);
@@ -162,11 +167,6 @@ body {
 .todo__item--completed {
   color: var(--color-todo-item-completed);
   text-decoration: line-through;
-}
-
-.custom-checkbox--checked {
-  background: linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-  color: white;
 }
 
 .tabpanel__controls {
