@@ -20,6 +20,11 @@ window.addEventListener("DOMContentLoaded", () => {
   renderTodos();
 });
 
+clearCompletedBtn.addEventListener("click", () => {
+  clearCompletedTodos();
+  renderTodos();
+});
+
 createTodoBtn.addEventListener("click", () => {
   console.log(isInputValueValid());
 });
@@ -49,6 +54,18 @@ tabs.forEach((element, _, arr) => {
 });
 
 // Functions
+function clearCompletedTodos() {
+  const todos = getTodos();
+
+  if (!todos.length) {
+    return;
+  }
+
+  const activeTodos = todos.filter((item) => !item.isCompleted);
+
+  localStorage.setItem("todos", JSON.stringify(activeTodos));
+}
+
 /**
  *
  * @param {string} title
