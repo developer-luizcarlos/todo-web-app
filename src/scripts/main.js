@@ -32,6 +32,13 @@ createTodoBtn.addEventListener("click", () => {
     return;
   }
 
+  const createdTodosQuantity = getTodos().length;
+
+  if (createdTodosQuantity >= 10) {
+    alert("Do not busy you too much! You can only create 10 todos at time.");
+    return;
+  }
+
   const todoTitle = input.value.trim();
 
   createTodo(todoTitle);
