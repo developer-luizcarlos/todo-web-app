@@ -18,6 +18,7 @@ const clearCompletedBtn = document.querySelector(".clear-completed-btn");
 // Listeners
 window.addEventListener("DOMContentLoaded", () => {
   renderTodos();
+  applySavedTheme();
 });
 
 clearCompletedBtn.addEventListener("click", () => {
@@ -74,7 +75,31 @@ tabs.forEach((element, _, arr) => {
   });
 });
 
+toggleThemeBtn.addEventListener("click", () => {
+  toggleBodyThemeId();
+
+  const savedTheme = getSavedThemeFromStorage();
+
+  if (savedTheme) {
+    const toggledTheme = savedTheme === "dark" ? "light" : "dark";
+
+    saveThemeOnStorage(toggledTheme);
+  } else {
+    saveThemeOnStorage("dark");
+  }
+});
+
 // Functions
+function applySavedTheme() {
+  const savedTheme = getSavedThemeFromStorage();
+
+  if (!savedTheme) {
+    document.body.id = "light-theme";
+  } else {
+    document.body.id = `${savedTheme}-theme`;
+  }
+}
+
 function clearCompletedTodos() {
   const todos = getTodos();
 
@@ -243,6 +268,14 @@ function getTodos() {
   }
 }
 
+/**
+ *
+ * @returns {"light" | "dark" | null}
+ */
+function getSavedThemeFromStorage() {
+  return localStorage.getItem("theme");
+}
+
 function isInputValueValid() {
   const value = input.value;
   return value.trim() !== "";
@@ -293,6 +326,39 @@ function renderTodos() {
   fillTabPanelWithTodos(todoListCompletedEl, completedTodos);
 
   itemsLeftEl.textContent = `${activeTodos.length} items left`;
+}
+
+/**
+ *
+ * @param {"light" | "dark"} theme
+ */
+function saveThemeOnStorage(theme) {
+  const normalizedArgument = theme.toLowerCase().trim();
+
+  if (normalizedArgument !== "light" && normalizedArgument !== "dark") {
+    throw new TypeError(
+      'Excepted either "light" or "dark" as possible argument',
+    );
+  }
+
+  localStorage.setItem("theme", normalizedArgument);
+}
+
+function toggleBodyThemeId() {
+  const body = document.body;
+
+  const currentThemeId = body.id;
+
+  const checkHasThemeId = currentThemeId.trim();
+
+  if (!checkHasThemeId) {
+    body.id = "light-theme";
+  } else {
+    const toggledId =
+      currentThemeId === "light-theme" ? "dark-theme" : "light-theme";
+
+    body.id = toggledId;
+  }
 }
 
 function toggleTodoCompleteness(todoIndex) {
