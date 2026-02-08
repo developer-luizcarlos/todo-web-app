@@ -28,6 +28,7 @@ clearCompletedBtn.addEventListener("click", () => {
 
 createTodoBtn.addEventListener("click", () => {
   if (!isInputValueValid()) {
+    alert("Please, enter a text for creating a todo");
     return;
   }
 
