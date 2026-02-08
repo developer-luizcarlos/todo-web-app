@@ -1,0 +1,21 @@
+@media only screen and (hover: hover) {
+  .tablist__tab:hover {
+    cursor: pointer;
+    color: hsl(220, 98%, 61%);
+  }
+
+  .clear-completed-btn:hover {
+    cursor: pointer;
+    color: hsl(220, 98%, 61%);
+  }
+}
+
+@media only screen and (prefers-reduced-motion: no-preference) {
+  .tablist__tab {
+    transition: color 0.3s ease;
+  }
+
+  .clear-completed-btn {
+    transition: color 0.3s ease;
+  }
+}
