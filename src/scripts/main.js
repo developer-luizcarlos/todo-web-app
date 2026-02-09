@@ -84,22 +84,13 @@ tabs.forEach((element, _, arr) => {
 });
 
 toggleThemeBtn.addEventListener("click", () => {
-  toggleBodyThemeId();
-
-  const savedTheme = getSavedThemeFromStorage();
-
-  if (savedTheme) {
-    const toggledTheme = savedTheme === "dark" ? "light" : "dark";
-
-    saveThemeOnStorage(toggledTheme);
-  } else {
-    saveThemeOnStorage("dark");
-  }
+  toggleSavedTheme();
+  applySavedTheme();
 });
 
 // Functions
 function applySavedTheme() {
-  const savedTheme = getSavedThemeFromStorage();
+  const savedTheme = localStorage.getItem("theme");
 
   if (!savedTheme) {
     document.body.id = "light-theme";
@@ -276,14 +267,6 @@ function getTodos() {
   }
 }
 
-/**
- *
- * @returns {"light" | "dark" | null}
- */
-function getSavedThemeFromStorage() {
-  return localStorage.getItem("theme");
-}
-
 function isInputValueValid() {
   const value = input.value;
   return value.trim() !== "";
@@ -336,36 +319,17 @@ function renderTodos() {
   itemsLeftEl.textContent = `${activeTodos.length} items left`;
 }
 
-/**
- *
- * @param {"light" | "dark"} theme
- */
-function saveThemeOnStorage(theme) {
-  const normalizedArgument = theme.toLowerCase().trim();
+function toggleSavedTheme() {
+  const savedTheme = localStorage.getItem("theme");
 
-  if (normalizedArgument !== "light" && normalizedArgument !== "dark") {
-    throw new TypeError(
-      'Excepted either "light" or "dark" as possible argument',
-    );
-  }
+  if (!savedTheme) {
+    const defaultTheme = "light";
 
-  localStorage.setItem("theme", normalizedArgument);
-}
-
-function toggleBodyThemeId() {
-  const body = document.body;
-
-  const currentThemeId = body.id;
-
-  const checkHasThemeId = currentThemeId.trim();
-
-  if (!checkHasThemeId) {
-    body.id = "light-theme";
+    localStorage.setItem("theme", defaultTheme);
   } else {
-    const toggledId =
-      currentThemeId === "light-theme" ? "dark-theme" : "light-theme";
+    const toggledTheme = savedTheme === "light" ? "dark" : "light";
 
-    body.id = toggledId;
+    localStorage.setItem("theme", toggledTheme);
   }
 }
 
